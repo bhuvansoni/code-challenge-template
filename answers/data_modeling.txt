@@ -1,0 +1,34 @@
+
+Problem - Data Modeling
+Approach and Reasoning:
+
+1. Weather Data Table**:
+   - We store each weather record with columns for station ID, date, max temperature, min temperature, and precipitation.
+   - We ensure uniqueness by enforcing a composite `UNIQUE` constraint on `station_id` and `date`.
+   - Missing values are represented by `NULL` or `NULL` equivalents (like `-9999` for weather readings that are missing).
+
+2. Weather Statistics Table**:
+   - We create a separate table to store the calculated yearly statistics for each station.
+   - This avoids redundant calculations when querying for statistics and helps in optimizing performance.
+   - The statistics include average maximum temperature, average minimum temperature, and total accumulated precipitation for each year and station.
+
+Queries used to create table - 
+CREATE TABLE weather_data (
+    id SERIAL PRIMARY KEY,
+    station_id VARCHAR(50) NOT NULL,
+    date DATE NOT NULL,
+    max_temp INT,       -- Maximum temperature in tenths of Celsius
+    min_temp INT,       -- Minimum temperature in tenths of Celsius
+    precipitation INT,  -- Precipitation in tenths of millimeters
+    UNIQUE(station_id, date)
+);
+
+CREATE TABLE weather_stats (
+    id SERIAL PRIMARY KEY,
+    station_id VARCHAR(50) NOT NULL,
+    year INT NOT NULL,
+    avg_max_temp FLOAT,     -- Average maximum temperature in Celsius
+    avg_min_temp FLOAT,     -- Average minimum temperature in Celsius
+    total_precipitation FLOAT,  -- Total precipitation in centimeters
+    UNIQUE(station_id, year)
+);

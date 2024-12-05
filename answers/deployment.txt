@@ -1,0 +1,6 @@
+To deploy the solution on AWS, we would use the following services:
+
+AWS RDS (PostgreSQL): Store weather data in a scalable, managed PostgreSQL database.
+AWS Lambda: Schedule the ingestion script to run periodically using AWS CloudWatch.
+AWS API Gateway: Expose the REST API with auto-scaling capabilities.
+AWS S3: Store the weather data files in an S3 bucket and access them from the Lambda function.
