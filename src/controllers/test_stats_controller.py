@@ -1,8 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
 from models.weather_stats import WeatherStats
-from controllers.stats_controller import get_weather_stats  # Import your function
-
+from controllers.stats_controller import get_weather_stats 
 class TestGetWeatherStats(unittest.TestCase):
 
     def test_get_weather_stats_with_station_id(self):
